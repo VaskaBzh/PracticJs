@@ -3,9 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/main.js" defer></script>
     <title>JSProject</title>
 </head>
 <body>
-    
+    <section class="section">
+        <div class="container row">
+            <div class="container__block">
+                <h2 class="title">Работники</h2>
+                <form action="#" class="form">
+                    <input type="text" name="" id="name" placeholder="Имя">
+                    <input type="text" name="" id="surname" placeholder="Фамилия">
+                    <input type="date" name="" id="date" placeholder="Дата принятия на работу">
+                    <input type="text" name="" id="post" placeholder="Разряд">
+                    <div class="check__block">
+                        <input type="checkbox" name="" id="check">
+                        <label for="check">Наличие детей</label>
+                    </div>
+                    <select name="selects">
+                        <option value="1" selected>Слесарь</option>
+                        <option value="2">Водитель</option>
+                        <option value="3">Врач</option>
+                        <option value="4">Повар</option>
+                    </select>
+                    <button>Добавить</button>
+                </form>
+            </div>
+            <div class="container__block">
+                <table>
+                    <tr>
+                        <th>Профессия</th>
+                        <th>Имя</th>
+                        <th>Фамилия</th>
+                        <th>Дата принятия</th>
+                        <th>Разряд</th>
+                        <th>Дети</th>
+                        <th>Удалить</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td id="del"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
