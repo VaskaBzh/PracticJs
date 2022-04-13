@@ -19,47 +19,36 @@ const getChildren = () => {
     }
 }    
 
+const tableCreate = () => {
+    worker.forEach((item, index) => {
+        if(item.name != '' & item.surname != '' & item.date != '' & item.post != '') {
+            const tr = document.createElement('tr')
+
+            tr.innerHTML = '<td>' + item.work + '</td>' + '<td>' + item.name + '</td>' + '<td>' + item.surname + '</td>' + '<td>' + item.date + '</td>' + '<td>' + item.post + '</td>' + '<td>' + item.children + '</td>' + '<td id="del">Удалить</td>'
+
+            table.append(tr)
+
+            tr.querySelector('#del').addEventListener('click', () => {
+                tr.remove()
+                worker.splice(index, 1)
+                localStorage.setItem('worker', JSON.stringify(worker))
+            })
+        }
+    })
+}
+
 const cache = () => {
     if (localStorage.getItem('worker') != null) {
         worker = JSON.parse(localStorage.getItem('worker'))
     
-        worker.forEach((item, index) => {
-            if(item.name != '' & item.surname != '' & item.date != '' & item.post != '') {
-
-                const tr = document.createElement('tr')
-
-                tr.innerHTML = '<td>' + item.work + '</td>' + '<td>' + item.name + '</td>' + '<td>' + item.surname + '</td>' + '<td>' + item.date + '</td>' + '<td>' + item.post + '</td>' + '<td>' + item.children + '</td>' + '<td id="del">Удалить</td>'
-
-                table.append(tr)
-
-                tr.querySelector('#del').addEventListener('click', () => {
-                    tr.remove()
-                    worker.splice(index, 1)
-                    localStorage.setItem('worker', JSON.stringify(worker))
-                })
-            }
-        })
+        tableCreate()
     }
 }
 
 const render = () => {  
     table.innerHTML = '<tr><th>Профессия</th><th>Имя</th><th>Фамилия</th><th>Дата принятия</th><th>Разряд</th><th>Дети</th><th>Удалить</th></tr>'
 
-    worker.forEach((item, index) => {
-        if(item.name != '' & item.surname != '' & item.date != '' & item.post != '') {
-            const tr = document.createElement('tr')
-
-            tr.innerHTML = '<td>' + item.work + '</td><td>' + item.name + '</td><td>' + item.surname + '</td><td>' + item.date + '</td><td>' + item.post + '</td><td>' + item.children + '</td><td id="del">Удалить</td>'
-
-            table.append(tr)
-
-            tr.querySelector('#del').addEventListener('click', () => {
-                tr.remove()
-                worker.splice(index--, 1)
-                localStorage.setItem('worker', JSON.stringify(worker))
-            })
-        }
-    })
+    tableCreate()
 }
 
 form.addEventListener('submit', () => {
