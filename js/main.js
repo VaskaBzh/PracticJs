@@ -9,8 +9,6 @@ const post = document.querySelector('#post')
 const check = document.querySelector('#check')
 const table = document.querySelector('table')
 
-// const tableElement = document.querySelectorAll('td')
-
 const worker = []
 
 const getChildren = () => {
@@ -20,6 +18,24 @@ const getChildren = () => {
         return 'Нет'
     }
 }    
+
+const render = () => {  
+
+    worker.forEach((item, index) => {
+        if(item.name != '' & item.surname != '' & item.date != '' & item.post != '') {
+            const tr = document.createElement('tr')
+
+            tr.innerHTML = '<td>' + item.work + '</td>' + '<td>' + item.name + '</td>' + '<td>' + item.surname + '</td>' + '<td>' + item.date + '</td>' + '<td>' + item.post + '</td>' + '<td>' + item.children + '</td>' + '<td id="del">Удалить</td>'
+
+            table.append(tr)
+
+            tr.querySelector('#del').addEventListener('click', () => {
+                tr.remove()
+                worker.splice(index, 1)
+            })
+        }
+    })
+}
 
 form.addEventListener('submit', () => {
     const newWorker = {
@@ -38,4 +54,12 @@ form.addEventListener('submit', () => {
         localStorage.setItem('workers', JSON.stringify(worker))
         console.log(worker)
     }
+    name.value = ''
+    surname.value = ''
+    date.value = ''
+    post.value = ''
+    check.checked = false
+    select.value = 1
+
+    render()
 })
